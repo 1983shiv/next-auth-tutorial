@@ -1,8 +1,9 @@
+import LoginForm from "@components/auth/login-form"
 
 
-function Login() {
+const Login = () =>{
   return (
-    <div>Login Page</div>
+    <LoginForm />
   )
 }
 
