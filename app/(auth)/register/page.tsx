@@ -1,8 +1,9 @@
+import RegisterForm from "@components/auth/register-form"
 
 
 function Register() {
     return (
-      <div>Register Page</div>
+      <RegisterForm />
     )
   }
   
