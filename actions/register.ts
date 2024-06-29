@@ -4,6 +4,8 @@ import { RegisterSchema } from "@schemas"
 import bcrypt from "bcryptjs"
 import { db } from "@lib/db"
 import { getUserByEmail } from "@data/user"
+import { generateRandomId } from "@lib/utils"
+
 
 export const Register = async(values  : z.infer<typeof RegisterSchema>) =>{
     const validatedFields = RegisterSchema.safeParse(values)
@@ -22,6 +24,7 @@ export const Register = async(values  : z.infer<typeof RegisterSchema>) =>{
 
     await db.User.create({
         data:{
+            id: generateRandomId(8),
             name, 
             email, 
             password: hashedPassword
