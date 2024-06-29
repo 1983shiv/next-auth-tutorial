@@ -37,8 +37,11 @@ const LoginForm = () => {
       startTransition(() => {
         Login(values)
           .then((data) => {
-            setError(data.error)
-            setSucces(data.success)
+            setError(data?.error)
+            setSucces(data?.success)
+          })
+          .catch(function(error) { // use function keyword
+            console.log("error", error);
           });
       })
     

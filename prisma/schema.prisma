@@ -4,19 +4,19 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
-
 generator client {
   provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
   url      = "postgresql://tradix_owner:vwWoRYc01fzH@ep-restless-limit-a1kmsn16-pooler.ap-southeast-1.aws.neon.tech/tradix?sslmode=require"
 }
 
+
 model User {
-  id            String          @id @default(cuid())
+  id            Int          @id @default(autoincrement())
   name          String?
   email         String          @unique
   emailVerified DateTime?
@@ -30,7 +30,8 @@ model User {
 }
 
 model Account {
-  userId            String
+  id                Int @id @default(autoincrement())
+  userId            Int @unique
   type              String
   provider          String
   providerAccountId String
@@ -46,5 +47,6 @@ model Account {
   updatedAt DateTime @updatedAt
  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  @@id([provider, providerAccountId])
 }
+
+
